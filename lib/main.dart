@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_parse_json/pages/home_page.dart';
+import 'package:flutter_new_project/domain/services/album/album.dart';
 
-/// https://medium.com/flutter-community/parsing-complex-json-in-flutter-747c46655f51
-
-void main() {
-  runApp(MyApp());
+void main() async {
+  runApp(const MaterialApp(home: MyApp()));
+  await readJson();
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
+    return const Scaffold();
+  }
+}
+
+Future<void> readJson() async {
+  final data = await AlbumService.getAlbums();
+  for (var i in data.album) {
+    print(i.title);
   }
 }

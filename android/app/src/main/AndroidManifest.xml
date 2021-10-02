@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_parse_json">
+    package="com.example.flutter_new_project">
    <application
-        android:label="flutter_parse_json"
+        android:label="flutter_new_project"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

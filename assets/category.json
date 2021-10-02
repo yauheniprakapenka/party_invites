@@ -1,0 +1,13 @@
+{
+  "name":"Category 1",
+  "images":[
+    {
+      "id":1,
+      "imageName":"image 1"
+    },
+    {
+      "id":2,
+      "imageName":"image 2"
+    }
+  ]
+}
