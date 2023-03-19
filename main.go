@@ -50,19 +50,34 @@ func fromHandler(writer http.ResponseWriter, request *http.Request) {
 		})
 	} else if request.Method == http.MethodPost {
 		request.ParseForm()
-		responsesData := Rsvp{
+		responseData := Rsvp{
 			Name:       request.Form["name"][0],
 			Email:      request.Form["email"][0],
 			Phone:      request.Form["phone"][0],
 			WillAttend: request.Form["willattend"][0] == "true",
 		}
 
-		responses = append(responses, &responsesData)
-
-		if responsesData.WillAttend {
-			templates["thanks"].Execute(writer, responsesData.Name)
+		errors := []string{}
+		if responseData.Name == "" {
+			errors = append(errors, "Enter your name")
+		}
+		if responseData.Email == "" {
+			errors = append(errors, "Enter your email")
+		}
+		if responseData.Phone == "" {
+			errors = append(errors, "Enter your phone")
+		}
+		if len(errors) > 0 {
+			templates["form"].Execute(writer, formData{
+				Rsvp: &responseData, Errors: errors,
+			})
 		} else {
-			templates["sorry"].Execute(writer, responsesData.Name)
+			responses = append(responses, &responseData)
+			if responseData.WillAttend {
+				templates["thanks"].Execute(writer, responseData.Name)
+			} else {
+				templates["sorry"].Execute(writer, responseData.Name)
+			}
 		}
 	}
 }
