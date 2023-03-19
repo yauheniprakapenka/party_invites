@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+            "name": "Launch file",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${file}",
+            // "port": 5001,
+            // "host": "127.0.0.1",
+            // "showLog": true
+        },
+        {
+            "name": "Launch package",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}",
+        }
+    ]
+}
